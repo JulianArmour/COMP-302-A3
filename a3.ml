@@ -20,26 +20,29 @@ let list_len l =
 	in adder 0 l
 ;;
 
-(* | (l1, l2) -> (l1@[h1], l2@[h2]) *)
-
 let rec split l =
 	match l with
 	| [] -> ([], [])
-	| h1::h2::t -> (
+	| h1::h2::t ->
 		match split t with
 		| (l1, l2) -> (h1::l1, h2::l2)
-	)
 	| [x] -> ([x], [])
 ;;
 
 (* Question 3 Here you implement merge. *)
 
 let rec merge twolists =
-  raise NotImplemented
+	match twolists with
+	| ([], []) -> []
+	| (l, []) -> l
+	| ([], l) -> l
+	| (h1::t1,h2::t2) ->
+		if h1 < h2 then h1::merge (t1, h2::t2)
+		else h2::merge (h1::t1, t2)
 ;;
 
 (* Question 4 Finally you combine split and merge and use them to implement mergesort. *)
 
 let rec mergesort l =
-  raise NotImplemented
+  
 ;;
