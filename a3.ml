@@ -44,5 +44,9 @@ let rec merge twolists =
 (* Question 4 Finally you combine split and merge and use them to implement mergesort. *)
 
 let rec mergesort l =
-  
+	match split l with
+	| ([], []) -> []
+	| ([x], []) -> [x]
+	| ([], [x]) -> [x]
+	| (l1,l2) -> merge (mergesort l1, mergesort l2)
 ;;
