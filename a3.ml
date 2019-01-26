@@ -12,8 +12,24 @@ let rec common twolists =
 some other sort defeats the whole purpose.  This question is for the
 implementation of split.*)
 
+let list_len l =
+	let rec adder acc l =
+		match l with
+		| [] -> acc
+		| _ :: t -> adder (acc+1) t
+	in adder 0 l
+;;
+
+(* | (l1, l2) -> (l1@[h1], l2@[h2]) *)
+
 let rec split l =
-  raise NotImplemented
+	match l with
+	| [] -> ([], [])
+	| h1::h2::t -> (
+		match split t with
+		| (l1, l2) -> (h1::l1, h2::l2)
+	)
+	| [x] -> ([x], [])
 ;;
 
 (* Question 3 Here you implement merge. *)
